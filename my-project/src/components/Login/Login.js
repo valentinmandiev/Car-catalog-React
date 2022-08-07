@@ -16,13 +16,14 @@ const Login=()=>{
         password,
     } = Object.fromEntries(new FormData(e.target));
 
+   
     authService.login(email, password)
         .then(authData => {
             userLogin(authData);
             navigate('/');
         })
         .catch(() => {
-            navigate('/404');
+            navigate('/');
         });
 };
 

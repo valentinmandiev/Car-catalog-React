@@ -13,9 +13,7 @@ const CarDetails = () => {
   const { user } = useContext(AuthContext);
 
   const isOwner=currentCar._ownerId===user._id;
-  console.log(currentCar)
-  console.log(user._id)
-  console.log(isOwner)
+
   
   useEffect(() => {
     carService.getOne(carId)

@@ -20,9 +20,17 @@ const Register=()=>{
         const password = formData.get('password');
         const confirmPassword = formData.get('repeatPassword');
 
-        console.log(confirmPassword)
+       
         if (password !== confirmPassword) {
             return;
+        }
+        if(password.length<=5 ){
+          throw new Error('Youre password must be at least 5 characters ')
+        }
+
+        if(email.length<=5 ){
+          throw new Error('Youre email must be at least 5 characters ')
+       
         }
 
         authService.register(email, password)
