@@ -12,6 +12,11 @@ const CarDetails = () => {
   const [currentCar, setCurrentCar] = useState({});
   const { user } = useContext(AuthContext);
 
+  const isOwner=currentCar._ownerId===user._id;
+  console.log(currentCar)
+  console.log(user._id)
+  console.log(isOwner)
+  
   useEffect(() => {
     carService.getOne(carId)
       .then(result => {
@@ -19,7 +24,7 @@ const CarDetails = () => {
       });
   },[])
 
-
+ 
   const carDeleteHandler = () => {
     const confirmation = window.confirm('Are you sure you want to delete this game?');
 
@@ -54,7 +59,7 @@ const CarDetails = () => {
 
 
 
-
+             {isOwner &&
           <div className="actionBtn">
             <Link to={`/cars/${carId}/edit`} className="edit">
               Edit
@@ -64,7 +69,7 @@ const CarDetails = () => {
             </button>
 
           </div>
-         
+}
 
         </div>
       </div>

@@ -1,7 +1,7 @@
 import CatalogItem from "./CatalogItem/CatalogItem";
 
 const Catalog=({cars})=>{
-console.log(cars)
+
 return(
 
 <>
