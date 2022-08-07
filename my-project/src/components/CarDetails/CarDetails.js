@@ -1,12 +1,13 @@
 import { useEffect, useState, useContext } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link,useNavigate } from 'react-router-dom';
 
 import * as carService from '../../services/carService';
 import { AuthContext } from '../../contexts/AuthContext';
 
 
 const CarDetails = () => {
-
+  
+  const navigate=useNavigate()
   const { carId } = useParams();
   const [currentCar, setCurrentCar] = useState({});
   const { user } = useContext(AuthContext);
@@ -19,7 +20,17 @@ const CarDetails = () => {
   },[])
 
 
+  const carDeleteHandler = () => {
+    const confirmation = window.confirm('Are you sure you want to delete this game?');
 
+    if (confirmation) {
+        carService.remove(carId)
+            .then(() => {
+                
+                navigate('/catalog');
+            })
+    }
+}
 
 
 
@@ -48,9 +59,9 @@ const CarDetails = () => {
             <Link to={`/cars/${carId}/edit`} className="edit">
               Edit
             </Link>
-            <Link to={`/cars/${carId}/delete`} className="remove">
+            <button onClick={carDeleteHandler}  className="remove">
               Delete
-            </Link>
+            </button>
 
           </div>
          

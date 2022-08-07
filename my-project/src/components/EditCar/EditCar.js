@@ -65,7 +65,7 @@ const EditCar = () => {
               defaultValue={currentCar.imageUrl}
             />
           </div>
-          <button className="btn" type="submit">
+          <button className="btn" type="submit" >
             Edit car
           </button>
         </div>
