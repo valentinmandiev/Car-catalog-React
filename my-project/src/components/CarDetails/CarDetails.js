@@ -3,10 +3,12 @@ import { useParams, Link,useNavigate } from 'react-router-dom';
 
 import * as carService from '../../services/carService';
 import { AuthContext } from '../../contexts/AuthContext';
+import { CarsContext } from "../../contexts/CarsContext";
 
 
 const CarDetails = () => {
   
+  const { carEdit } = useContext(CarsContext);
   const navigate=useNavigate()
   const { carId } = useParams();
   const [currentCar, setCurrentCar] = useState({});
@@ -28,8 +30,8 @@ const CarDetails = () => {
 
     if (confirmation) {
         carService.remove(carId)
-            .then(() => {
-                
+            .then((result) => {
+              carEdit(carId, result);
                 navigate('/catalog');
             })
     }

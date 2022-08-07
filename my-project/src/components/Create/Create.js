@@ -13,6 +13,8 @@ const Create=()=>{
 
       const carData = Object.fromEntries(new FormData(e.target));
 
+     
+      console.log(carData)
       carService.create(carData)
           .then(result => {
               carAdd(result)
